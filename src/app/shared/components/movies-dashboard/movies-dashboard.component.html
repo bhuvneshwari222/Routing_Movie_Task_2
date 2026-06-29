@@ -1,0 +1,27 @@
+<div class="row" *ngIf="moviesArr.length > 0; else noMovie">
+    <div class="col-md-12 mb-3 text-right">
+        <button routerLink="addMovie" mat-raised-button color="primary">Add Movie</button>
+    </div>
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li 
+            routerLinkActive="active"
+            [routerLink]="[movie.movieId]"
+            [queryParams]="{isDubbed: movie.isDubbed}"
+            *ngFor="let movie of moviesArr; trackBy: trackByMovieID" class="list-group-item">
+                {{movie.movieName}}
+                <small class="badge" [ngClass]="{
+                    'badge-success': movie.rating >= 4.5,
+                    'badge-warning': movie.rating <= 3.5,
+                    'badge-danger': movie.rating <= 2.5
+                }">{{movie.rating}}</small>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<ng-template #noMovie>
+    <p class="alert alert-danger">No Movie Added Yet!!!</p>
+</ng-template>

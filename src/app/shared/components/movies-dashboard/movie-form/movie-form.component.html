@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-md-12 mt-md-0 mt-4">
+        <mat-card>
+            <mat-card-title>{{isInEditMode ? 'Update Movie' : 'Add Movie'}}</mat-card-title>
+            <mat-card-content>
+                <form [formGroup]="movieForm" (ngSubmit)="onAddMovie()">
+                    <div class="form-group">
+                        <label for="movieName">Movie Name</label>
+                        <input formControlName="movieName" id="movieName" type="text" class="form-control">
+                        <strong *ngIf="f['movieName'].touched && f['movieName'].hasError('required')"
+                            class="text-danger">
+                            Movie Name is a required field
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="movieStatus">Movie Status</label>
+                        <select class="form-control" formControlName="movieStatus" id="movieStatus">
+                            <option value="Released">Released</option>
+                            <option value="ComingSoon">Coming Soon</option>
+                            <option value="Classic">Classic</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isDubbed">Is Dubbed</label>
+                        <select class="form-control" formControlName="isDubbed" id="isDubbed">
+                            <option [ngValue]="true">Yes</option>
+                            <option [ngValue]="false">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="poster">Poster Image</label>
+                        <input formControlName="poster" id="poster" type="text" class="form-control">
+                        <strong *ngIf="f['poster'].touched && f['poster'].hasError('required')"
+                            class="text-danger">
+                            Poster Image is a required field
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <input type="number" class="form-control" formControlName="rating">
+                        <strong *ngIf="f['rating'].touched && f['rating'].hasError('required')" class="text-danger">
+                            Rating is a required field
+                        </strong>
+                        <strong *ngIf="f['rating'].dirty && f['rating'].hasError('min')" class="text-danger">
+                            The min rating should be 1
+                        </strong>
+                        <strong *ngIf="f['rating'].dirty && f['rating'].hasError('max')" class="text-danger">
+                            The max rating should be 5
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genre">Genre</label>
+                        <input type="text" class="form-control" formControlName="genre">
+                        <strong *ngIf="f['genre'].touched && f['genre'].hasError('required')" class="text-danger">
+                            Rating is a required field
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="releaseYear">Release Year</label>
+                        <input type="number" class="form-control" formControlName="releaseYear">
+                        <strong *ngIf="f['releaseYear'].touched && f['releaseYear'].hasError('required')"
+                            class="text-danger">
+                            Release Year is a required field
+                        </strong>
+                        <strong *ngIf="f['releaseYear'].dirty && f['releaseYear'].hasError('min')" class="text-danger">
+                            Release Year must be 1900 or later.
+                        </strong>
+                        <strong *ngIf="f['releaseYear'].dirty && f['releaseYear'].hasError('max')" class="text-danger">
+                            Release Year cannot be greater than the current year.
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea rows="3" formControlName="description" id="description" class="form-control"></textarea>
+                        <strong *ngIf="f['description'].touched && f['description'].hasError('required')"
+                            class="text-danger">
+                            Release Year is a required field
+                        </strong>
+                    </div>
+
+                    <button type="submit" *ngIf="!isInEditMode" mat-raised-button color="primary" class="w-100">Add Movie</button>
+                    <button (click)="onUpdateMovie()" type="button" *ngIf="isInEditMode" mat-raised-button color="primary" class="w-100">Update Movie</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

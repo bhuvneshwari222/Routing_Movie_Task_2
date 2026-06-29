@@ -1,0 +1,152 @@
+<div class="row">
+    <div class="col-md-12">
+        <mat-card>
+            <mat-card-title>{{isInEditMode ? 'Update Actor' : 'Add Actor'}}</mat-card-title>
+            <mat-card-content>
+                <form [formGroup]="actorForm" (ngSubmit)="onAddActor()">
+                    <div class="form-group">
+                        <label for="actorName">Actor Name</label>
+                        <input formControlName="actorName" id="actorName" type="text" class="form-control">
+                        <strong *ngIf="f['actorName'].touched && f['actorName'].hasError('required')"
+                            class="text-danger">
+                            Actor name is a required field
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profileImage">ProfileImage</label>
+                        <input formControlName="profileImage" id="profileImage" type="text" class="form-control">
+                        <strong *ngIf="f['profileImage'].touched && f['profileImage'].hasError('required')"
+                            class="text-danger">
+                            ProfileImage is a required field
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profession">Profession</label>
+                        <input formControlName="profession" id="profession" type="text" class="form-control">
+                        <strong *ngIf="f['profession'].touched && f['profession'].hasError('required')"
+                            class="text-danger">
+                            Profession is a required field
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experienceYears">Experience In Years</label>
+                        <input formControlName="experienceYears" id="experienceYears" type="text"
+                            class="form-control">
+                        <strong *ngIf="f['experienceYears'].touched && f['experienceYears'].hasError('required')"
+                            class="text-danger">
+                            Experience In Years is a required field
+                        </strong>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isActive">Is Active</label>
+                        <select formControlName="isActive" id="isActive" class="form-control">
+                            <option [ngValue]="true">Yes</option>
+                            <option [ngValue]="false">No</option>
+                        </select>
+                    </div>
+
+                    <div formArrayName="movies">
+                        <h2 class="font-weight-bold">Movies</h2>
+                        <div class="row" *ngFor="let movie of moviesArr.controls; let i = index">
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <input [formControlName]="i" [id]="'movies-' + i" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <button (click)="onRemoveMoviesControls(i)" *ngIf="i > 0" type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-2">
+                                <button [disabled]="f['movies'].invalid" type="button" (click)="addMovieControls()" mat-raised-button color="primary">Add
+                                    Movies</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" formGroupName="address">
+                        <div class="col-md-6" formGroupName="current">
+                            <h2 class="font-weight-bold">Current Address</h2>
+                            <div class="form-group">
+                                <label for="c-country">Country</label>
+                                <select type="text" class="form-control" formControlName="country" id="c-country">
+                                    <option [value]="country" *ngFor="let country of countries">{{country}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="c-state">State</label>
+                                <input formControlName="state" id="c-state" type="text" class="form-control">
+                                <strong
+                                    *ngIf="currentAddControls['state'].touched && currentAddControls['state'].hasError('required')"
+                                    class="text-danger">State is a required field
+                                </strong>
+                            </div>
+                            <div class="form-group">
+                                <label for="c-city">city</label>
+                                <input formControlName="city" id="c-city" type="text" class="form-control">
+                                <strong
+                                    *ngIf="currentAddControls['city'].touched && currentAddControls['city'].hasError('required')"
+                                    class="text-danger">City is a required field
+                                </strong>
+                            </div>
+                            <div class="form-group">
+                                <label for="c-zipcode">Zipcode</label>
+                                <input formControlName="zipcode" id="c-zipcode" type="text" class="form-control">
+                                <strong
+                                    *ngIf="currentAddControls['zipcode'].touched && currentAddControls['zipcode'].hasError('required')"
+                                    class="text-danger">Zipcode is a required field
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6" formGroupName="permanent">
+                            <h2 class="font-weight-bold">Permanent Address</h2>
+                            <div class="form-group">
+                                <label for="p-country">Country</label>
+                                <select type="text" class="form-control" formControlName="country" id="p-country">
+                                    <option [value]="country" *ngFor="let country of countries">{{country}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="p-state">State</label>
+                                <input formControlName="state" id="p-state" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="p-city">city</label>
+                                <input formControlName="city" id="p-city" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="p-zipcode">Zipcode</label>
+                                <input formControlName="zipcode" id="p-zipcode" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isAddressSame">
+                            <input formControlName="isAddressSame" id="isAddressSame" type="checkbox">
+                            Is Address Same</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="biography">Biography</label>
+                        <textarea rows="3" formControlName="biography" id="biography" type="number"
+                            class="form-control"></textarea>
+                        <strong *ngIf="f['biography'].touched && f['biography'].hasError('required')"
+                            class="text-danger">
+                            Biography In Years is a required field
+                        </strong>
+                    </div>
+
+                    <button *ngIf="!isInEditMode" mat-raised-button color="primary" class="w-100">Add Actor</button>
+                    <button (click)="onUpdateActor()" *ngIf="isInEditMode" mat-raised-button color="primary" class="w-100">Update Actor</button>
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="row" *ngIf="actorsArr.length > 0; else noAcotr">
+    <div class="col-12 mb-4 text-right">
+        <button routerLink="addActor" mat-raised-button color="primary">Add Actor</button>
+    </div>
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li 
+            routerLinkActive="active"
+            [routerLink]="actor.actorId"
+            *ngFor="let actor of actorsArr;" class="list-group-item">
+                {{actor.actorName}}
+                <small class="badge" [ngClass]="{
+                    'badge-success': actor.isActive,
+                    'badge-danger': !actor.isActive
+                }">
+                {{actor.isActive ? 'Active' : 'InActive'}}</small>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<ng-template #noAcotr>
+    <p class="alert alert-primary">No Actors Details Available</p>
+</ng-template>
