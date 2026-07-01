@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FairsDashboardComponent } from './fairs-dashboard.component';
+import { OttCardsComponent } from './ott-cards.component';
 
-describe('FairsDashboardComponent', () => {
-  let component: FairsDashboardComponent;
-  let fixture: ComponentFixture<FairsDashboardComponent>;
+describe('OttCardsComponent', () => {
+  let component: OttCardsComponent;
+  let fixture: ComponentFixture<OttCardsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FairsDashboardComponent ]
+      declarations: [ OttCardsComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FairsDashboardComponent);
+    fixture = TestBed.createComponent(OttCardsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

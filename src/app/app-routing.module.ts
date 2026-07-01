@@ -5,10 +5,11 @@ import { RouterModule, Routes } from "@angular/router";
 import { MoviesDashboardComponent } from "./shared/components/movies-dashboard/movies-dashboard.component";
 import { MovieFormComponent } from "./shared/components/movies-dashboard/movie-form/movie-form.component";
 import { MovieDetailsComponent } from "./shared/components/movies-dashboard/movie-details/movie-details.component";
-import { FairsDashboardComponent } from "./shared/components/fairs-dashboard/fairs-dashboard.component";
 import { ActorsDashboardComponent } from "./shared/components/actors-dashboard/actors-dashboard.component";
 import { ActorsFormComponent } from "./shared/components/actors-dashboard/actors-form/actors-form.component";
 import { ActorsDetailsComponent } from "./shared/components/actors-dashboard/actors-details/actors-details.component";
+import { OttPlatformComponent } from "./shared/components/ott-platform/ott-platform.component";
+import { OttDetailsComponent } from "./shared/components/ott-platform/ott-details/ott-details.component";
 
 
 
@@ -59,8 +60,14 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'fairs',
-        component: FairsDashboardComponent
+        path: 'ottPlatforms',
+        component: OttPlatformComponent,
+        children: [
+            {
+                path: ':ottID',
+                component: OttDetailsComponent
+            }
+        ]
     },
     {
         path: 'page-not-found',

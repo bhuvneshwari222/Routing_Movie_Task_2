@@ -10,7 +10,6 @@ import { GetConfirmComponent } from './shared/components/get-confirm/get-confirm
 import { MoviesDashboardComponent } from './shared/components/movies-dashboard/movies-dashboard.component';
 import { MovieFormComponent } from './shared/components/movies-dashboard/movie-form/movie-form.component';
 import { MovieDetailsComponent } from './shared/components/movies-dashboard/movie-details/movie-details.component';
-import { FairsDashboardComponent } from './shared/components/fairs-dashboard/fairs-dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,6 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ActorsDashboardComponent } from './shared/components/actors-dashboard/actors-dashboard.component';
 import { ActorsFormComponent } from './shared/components/actors-dashboard/actors-form/actors-form.component';
 import { ActorsDetailsComponent } from './shared/components/actors-dashboard/actors-details/actors-details.component';
+import { OttPlatformComponent } from './shared/components/ott-platform/ott-platform.component';
+import { OttDetailsComponent } from './shared/components/ott-platform/ott-details/ott-details.component';
+import { OttCardsComponent } from './shared/components/ott-platform/ott-cards/ott-cards.component';
 
 @NgModule({
   declarations: [
@@ -33,10 +35,12 @@ import { ActorsDetailsComponent } from './shared/components/actors-dashboard/act
     MoviesDashboardComponent,
     MovieFormComponent,
     MovieDetailsComponent,
-    FairsDashboardComponent,
     ActorsDashboardComponent,
     ActorsFormComponent,
-    ActorsDetailsComponent
+    ActorsDetailsComponent,
+    OttPlatformComponent,
+    OttDetailsComponent,
+    OttCardsComponent
   ],
   imports: [
     BrowserModule,

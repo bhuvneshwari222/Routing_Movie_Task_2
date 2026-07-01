@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ReviewsService } from './reviews.service';
+import { OttPlatFormService } from './ott-plat-form.service';
 
-describe('ReviewsService', () => {
-  let service: ReviewsService;
+describe('OttPlatFormService', () => {
+  let service: OttPlatFormService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ReviewsService);
+    service = TestBed.inject(OttPlatFormService);
   });
 
   it('should be created', () => {

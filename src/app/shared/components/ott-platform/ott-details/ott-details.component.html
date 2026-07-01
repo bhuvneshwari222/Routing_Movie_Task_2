@@ -1,0 +1,13 @@
+<mat-card class="p-0">
+    <mat-card-content>
+        <div class="ottPlatForm">
+            <img [src]="ottPlatFormObj.platformLogo" [alt]="ottPlatFormObj.platformName">
+        </div>
+        <div class="p-4">
+            <p class="m-0">{{ottPlatFormObj.description}}</p>
+            <p class="m-0"><b>Subscription Type:</b> {{ottPlatFormObj.subscriptionType}}</p>
+            <p class="m-0"><b>monthlyPrice:</b> {{ottPlatFormObj.monthlyPrice}}</p>
+            <p class="m-0"><b>totalMovies:</b> {{ottPlatFormObj.totalMovies}}</p>
+        </div>
+    </mat-card-content>
+</mat-card>
