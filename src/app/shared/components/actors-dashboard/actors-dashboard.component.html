@@ -7,6 +7,9 @@
             <li 
             routerLinkActive="active"
             [routerLink]="actor.actorId"
+            [queryParams]="{
+                actorRole: actor.profession
+            }"
             *ngFor="let actor of actorsArr;" class="list-group-item">
                 {{actor.actorName}}
                 <small class="badge" [ngClass]="{

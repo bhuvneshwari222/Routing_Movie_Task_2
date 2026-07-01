@@ -97,7 +97,7 @@ export class ActorsFormComponent implements OnInit {
     }
   }
 
-  onRemoveMoviesControls(i: number){
+  onRemoveMoviesControls(i: number) {
     this.moviesArr.removeAt(i);
   }
 
@@ -173,14 +173,17 @@ export class ActorsFormComponent implements OnInit {
     if (this.actorForm.invalid) {
       this.actorForm.markAllAsTouched()
     } else {
-      let updatedActor: IActor = { ...this.actorForm.getRawValue(), actorId: this.actorId}
+      let updatedActor: IActor = { ...this.actorForm.getRawValue(), actorId: this.actorId }
       this._ActorService.updateActor(updatedActor)
         .subscribe({
           next: resp => {
             this._snackBar.openSnackBar(resp.msg);
             this.actorForm.reset();
-            this._router.navigate(['actors']);
-            this._ActorService.setFirstActorSub$.next(true);
+            this._router.navigate(['actors', this.actorId], {
+              queryParams: {
+                actorRole: updatedActor.profession
+            }
+            });
           },
           error: err => {
             this._snackBar.openSnackBar(err.msg)
