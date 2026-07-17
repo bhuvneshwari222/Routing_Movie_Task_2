@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActorsDashboardComponent } from './shared/components/actors-dashboard/actors-dashboard.component';
 import { ActorsFormComponent } from './shared/components/actors-dashboard/actors-form/actors-form.component';
@@ -24,6 +25,8 @@ import { ActorsDetailsComponent } from './shared/components/actors-dashboard/act
 import { OttPlatformComponent } from './shared/components/ott-platform/ott-platform.component';
 import { OttDetailsComponent } from './shared/components/ott-platform/ott-details/ott-details.component';
 import { OttCardsComponent } from './shared/components/ott-platform/ott-cards/ott-cards.component';
+import { AuthComponent } from './shared/components/auth/auth.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { OttCardsComponent } from './shared/components/ott-platform/ott-cards/ot
     ActorsDetailsComponent,
     OttPlatformComponent,
     OttDetailsComponent,
-    OttCardsComponent
+    OttCardsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,9 @@ import { OttCardsComponent } from './shared/components/ott-platform/ott-cards/ot
     MatDividerModule,
     MatChipsModule,
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

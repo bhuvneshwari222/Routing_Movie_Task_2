@@ -21,10 +21,14 @@ export class ActorsDetailsComponent implements OnInit {
     private _snackbar: SnackbarService,
     private _router: Router,
     private _matdialog: MatDialog
-  ) { }
+  ) { 
+    this._routes.data.subscribe(resp =>{
+      this.actorDetails = resp['actor']
+    })
+  }
 
   ngOnInit(): void {
-    this.getActor();
+    // this.getActor();
   }
 
   getActor() {

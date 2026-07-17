@@ -21,10 +21,14 @@ export class MovieDetailsComponent implements OnInit {
     private _snackBar: SnackbarService,
     private _matDialog: MatDialog,
     private _router: Router
-  ) { }
+  ) { 
+    this._routes.data.subscribe(resp =>{
+      this.movieObj = resp['movie']
+    })
+  }
 
   ngOnInit(): void {
-    this.getMovieObj()
+    // this.getMovieObj()
   }
 
   getMovieObj() {

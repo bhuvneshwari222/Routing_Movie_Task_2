@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IActor } from '../../models/actor';
 import { ActorsService } from '../../services/actors.service';
 import { SnackbarService } from '../../services/snackbar.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-actors-dashboard',
@@ -15,11 +15,15 @@ export class ActorsDashboardComponent implements OnInit {
   constructor(
     private _actorService: ActorsService,
     private _snackBar: SnackbarService,
-    private _router: Router
-  ) { }
+    private _router: Router,
+    private _routes: ActivatedRoute
+  ) { 
+    this.actorsArr = this._routes.snapshot.data['actors'];
+    this.setFirstActorSelected();
+  }
 
   ngOnInit(): void {
-    this.getActorsArr();
+    // this.getActorsArr();
     this._actorService.setFirstActorSub$
       .subscribe({
         next: resp => {

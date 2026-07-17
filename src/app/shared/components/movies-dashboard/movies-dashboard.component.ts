@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { Imovie } from '../../models/movie';
 import { SnackbarService } from '../../services/snackbar.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movies-dashboard',
@@ -15,11 +15,15 @@ export class MoviesDashboardComponent implements OnInit {
   constructor(
     private _movieService: MoviesService,
     private _snackBar: SnackbarService,
-    private _router: Router
-  ) { }
+    private _router: Router,
+    private _routes: ActivatedRoute
+  ) { 
+    this.moviesArr = this._routes.snapshot.data['movies'];
+    this.setFirstElemntSelected()
+  }
 
   ngOnInit(): void {
-    this.getMoviesArr()
+    // this.getMoviesArr();
     this._movieService.setFirstElemntSub$
       .subscribe({
         next: resp => {

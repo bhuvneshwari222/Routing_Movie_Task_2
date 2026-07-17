@@ -10,22 +10,38 @@ import { ActorsFormComponent } from "./shared/components/actors-dashboard/actors
 import { ActorsDetailsComponent } from "./shared/components/actors-dashboard/actors-details/actors-details.component";
 import { OttPlatformComponent } from "./shared/components/ott-platform/ott-platform.component";
 import { OttDetailsComponent } from "./shared/components/ott-platform/ott-details/ott-details.component";
-
+import { ActorsResolver } from "./shared/services/actors.resolver";
+import { MoviesResolver } from "./shared/services/movies.resolver";
+import { AuthComponent } from "./shared/components/auth/auth.component";
+import { AuthGuard } from "./shared/services/auth.guard";
+import { UserRoleGuard } from "./shared/services/userRole.guard";
 
 
 const routes: Routes = [
     {
-        path: 'home',
-        component: HomeDashboardComponent
+        path: '',
+        component: AuthComponent
     },
     {
-        path: '',
-        redirectTo : 'home',
-        pathMatch: 'full'
+        path: 'home',
+        component: HomeDashboardComponent,
+        title: 'Home',
+        canActivate: [AuthGuard, UserRoleGuard],
+        data: {
+            userRoles: ['admin', 'superAdmin', 'buyer']
+        }
     },
     {
         path: 'actors',
         component: ActorsDashboardComponent,
+        title: 'Acotrs',
+        canActivate: [AuthGuard, UserRoleGuard],
+        data: {
+            userRoles: ['admin', 'superAdmin']
+        },
+        resolve: {
+            actors: ActorsResolver
+        },
         children: [
             {
                 path: 'addActor',
@@ -33,7 +49,10 @@ const routes: Routes = [
             },
             {
                 path: ':actorID',
-                component: ActorsDetailsComponent
+                component: ActorsDetailsComponent,
+                resolve: {
+                    actor: ActorsResolver
+                }
             },
             {
                 path: ':actorID/edit',
@@ -44,6 +63,14 @@ const routes: Routes = [
     {
         path: 'movies',
         component: MoviesDashboardComponent,
+        title: 'Movies',
+        canActivate: [AuthGuard, UserRoleGuard],
+        data: {
+            userRoles: ['admin', 'superAdmin', 'buyer']
+        },
+        resolve: {
+            movies: MoviesResolver
+        },
         children: [
             {
                 path: 'addMovie',
@@ -51,7 +78,10 @@ const routes: Routes = [
             },
             {
                 path: ':movieID',
-                component: MovieDetailsComponent
+                component: MovieDetailsComponent,
+                resolve: {
+                    movie: MoviesResolver
+                },
             },
             {
                 path: ':movieId/edit',
@@ -62,6 +92,11 @@ const routes: Routes = [
     {
         path: 'ottPlatforms',
         component: OttPlatformComponent,
+        title: 'OttPlatforms',
+        canActivate: [AuthGuard, UserRoleGuard],
+        data: {
+            userRoles: ['superAdmin']
+        },
         children: [
             {
                 path: ':ottID',
@@ -84,4 +119,4 @@ const routes: Routes = [
     ],
     exports: [RouterModule]
 })
-export class AppRoutingModule{}
+export class AppRoutingModule { }
