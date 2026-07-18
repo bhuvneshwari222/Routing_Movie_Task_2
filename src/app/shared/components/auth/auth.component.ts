@@ -67,7 +67,7 @@ export class AuthComponent implements OnInit {
         },
         error: err =>{
           this.isLoading = false;
-          this._snackBar.openSnackBar(err.message);
+          this._snackBar.openSnackBar(err.error.message);
         }
       })
     }
@@ -88,7 +88,7 @@ export class AuthComponent implements OnInit {
           this.allReadyHasAcc = true;
         },
         error: err =>{
-          this._snackBar.openSnackBar(err.message);
+          this._snackBar.openSnackBar(err.error.message);
           this.isLoading = false;
         }
       })
