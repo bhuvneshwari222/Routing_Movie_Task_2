@@ -15,6 +15,7 @@ import { MoviesResolver } from "./shared/services/movies.resolver";
 import { AuthComponent } from "./shared/components/auth/auth.component";
 import { AuthGuard } from "./shared/services/auth.guard";
 import { UserRoleGuard } from "./shared/services/userRole.guard";
+import { CanDeactivateGuard } from "./shared/services/canDeactivate.guard";
 
 
 const routes: Routes = [
@@ -56,7 +57,8 @@ const routes: Routes = [
             },
             {
                 path: ':actorID/edit',
-                component: ActorsFormComponent
+                component: ActorsFormComponent,
+                canDeactivate: [CanDeactivateGuard]
             }
         ]
     },
@@ -85,7 +87,8 @@ const routes: Routes = [
             },
             {
                 path: ':movieId/edit',
-                component: MovieFormComponent
+                component: MovieFormComponent,
+                canDeactivate: [CanDeactivateGuard]
             }
         ]
     },

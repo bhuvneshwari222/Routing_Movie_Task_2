@@ -182,13 +182,22 @@ export class ActorsFormComponent implements OnInit {
             this._router.navigate(['actors', this.actorId], {
               queryParams: {
                 actorRole: updatedActor.profession
-            }
+              }
             });
           },
           error: err => {
             this._snackBar.openSnackBar(err.msg)
           }
         })
+    }
+  }
+
+  canDeactivate(): boolean {
+    if (this.actorForm.dirty && this.isInEditMode) {
+      let confirmation = confirm(`Are you sure, you want to discard this changes?`);
+      return confirmation;
+    } else {
+      return true;
     }
   }
 
